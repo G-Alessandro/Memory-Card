@@ -1,0 +1,17 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+}
+
+.hero-card {
+  width: 200px;
+  height: 400px;
+}
+
+img {
+  width: 100%;
+}
