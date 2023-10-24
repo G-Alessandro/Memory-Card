@@ -29,15 +29,20 @@ export default function HeroCard(props) {
     props.matchManagement(cardId)
     changeCardsOrder()
   }
-  
+
   return (
-    <div className='container'>
-      {newCardsOrder.map(character => (
-        <button className='hero-card' key={character.id} onClick={() => cardFunction(character.id)}>
-          <img src={character.thumbnailPath} alt={character.name} />
-          <h3>{character.name}</h3>
-        </button>
-      ))}
+    <div className='cards-container'>
+      {newCardsOrder.map(character => {
+        const characterName = character.name.replace(/\([^()]*\)/, '').trim();
+        return (
+          <button key={character.id} onClick={() => cardFunction(character.id)} className="card-container">
+            <div className='hero-card'>
+              <img src={character.thumbnailPath} alt={characterName} />
+            </div>
+            <h3 className='hero-name'>{characterName}</h3>
+          </button>
+        );
+      })}
     </div>
   );
 }

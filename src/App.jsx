@@ -15,6 +15,7 @@ export default function App() {
   const [chosenCards, setChosenCard] = useState([]);
   const [gameStarted, setGameStarted] = useState(false);
   const [showCards, setShowCards] = useState(false);
+  const [showScore, setShowScore] = useState(false);
   const [gameWin, setGameWin] = useState(false);
   const [gameDefeat, setGameDefeat] = useState(false);
 
@@ -75,6 +76,7 @@ export default function App() {
     setRandomCharacters(randomCharacters);
     setGameStarted(true);
     setShowCards(true);
+    setShowScore(true);
   }
 
   useEffect(() => {
@@ -91,6 +93,7 @@ export default function App() {
       if(score === randomCharacters.length - 1) {
         setGameWin(true);
         setShowCards(false);
+        setShowScore(false);
       }
       
     } else {
@@ -98,6 +101,7 @@ export default function App() {
       setScore(0);
       setGameDefeat(true);
       setShowCards(false);
+      setShowScore(false);
     }
     
   }
@@ -114,6 +118,7 @@ export default function App() {
     setChosenCard([]);
     setGameWin(false);
     setGameDefeat(false);
+    setShowScore(true);
   }
 
   function anotherRound() {
@@ -123,6 +128,7 @@ export default function App() {
     setChosenCard([]);
     setGameWin(false);
     setGameDefeat(false);
+    setShowScore(true);
   }
 
   function mainMenuBtn() {
@@ -134,6 +140,7 @@ export default function App() {
     setShowCards(false);
     setGameWin(false);
     setGameDefeat(false);
+    setShowScore(false);
   }
 
   return (
@@ -142,20 +149,23 @@ export default function App() {
       <div className='main-menu'>
         <img src={MarvelLogo} alt="Marvel Logo" className='marvel-logo'/>
         <h2>MEMORY GAME</h2>
-        <div className='difficulty-btn-container'>
-          <button className='difficulty-btn easy-btn' onClick={()=> setDifficulty("easy")}>EASY</button>
-          <button className='difficulty-btn medium-btn' onClick={()=> setDifficulty("medium")}>MEDIUM</button>
-          <button className='difficulty-btn hard-btn' onClick={()=> setDifficulty("hard")}>HARD</button>
+        <div className='difficulty-btn-rules-container'>
+          <p className='rules'>Choose the difficulty level and don't choose the same hero/heroine more than once!</p>
+          <div className='difficulty-btn-container'>
+            <button className='difficulty-btn easy-btn' onClick={()=> setDifficulty("easy")}>EASY</button>
+            <button className='difficulty-btn medium-btn' onClick={()=> setDifficulty("medium")}>MEDIUM</button>
+            <button className='difficulty-btn hard-btn' onClick={()=> setDifficulty("hard")}>HARD</button>
+          </div>
         </div>
       </div>
       }
-      {gameStarted && 
-      <div>
-        <div>
-          <button onClick={mainMenuBtn}>Main Menu</button>
+      {showScore && 
+      <div className='score-main_menu-container'>
+          <button onClick={mainMenuBtn} className='main-menu-btn'>Main Menu</button>
+        <div className='score-container'>
+          <p className='best-score'>Best score : {bestScore}</p>
+          <p className='score'>Score : {score}</p>
         </div>
-        <div>Best score : {bestScore}</div>
-        <div>Score : {score}</div>
       </div>}
       {showCards &&
       <HeroCard
