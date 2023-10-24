@@ -3,6 +3,7 @@ import {test} from "./components/test"
 import HeroCard from "./components/HeroCard"
 import VictoryScreen from './components/VictoryScreen';
 import DefeatScreen from './components/DefeatScreen';
+import MarvelLogo from './logo/marvel.svg'
 
 export default function App() {
 
@@ -93,7 +94,6 @@ export default function App() {
       }
       
     } else {
-      // setRandomCharacters([]);
       setChosenCard([]);
       setScore(0);
       setGameDefeat(true);
@@ -109,8 +109,6 @@ export default function App() {
   },[score])
 
   function resetBtn() {
-    // setDifficulty("");
-    // setRandomCharacters([]);
     setScore(0);
     setShowCards(true);
     setChosenCard([]);
@@ -138,24 +136,16 @@ export default function App() {
     setGameDefeat(false);
   }
 
-  // useEffect(() => {
-  //   if(score === randomCharacters.length && score > 0) {
-  //     setGameWin(true)
-  //   }
-  // },[score])
-
   return (
-    <div>
+    <div className='container'>
       {!gameStarted && 
-      <div>
-        <div>
-          <h1>MARVEL HEROES</h1>
-          <h3>Memory Game</h3>
-        </div>
-        <div>
-          <button className='difficulty-btn' onClick={()=> setDifficulty("easy")}>Easy</button>
-          <button className='difficulty-btn' onClick={()=> setDifficulty("medium")}>Medium</button>
-          <button className='difficulty-btn' onClick={()=> setDifficulty("hard")}>Hard</button>
+      <div className='main-menu'>
+        <img src={MarvelLogo} alt="Marvel Logo" className='marvel-logo'/>
+        <h2>MEMORY GAME</h2>
+        <div className='difficulty-btn-container'>
+          <button className='difficulty-btn easy-btn' onClick={()=> setDifficulty("easy")}>EASY</button>
+          <button className='difficulty-btn medium-btn' onClick={()=> setDifficulty("medium")}>MEDIUM</button>
+          <button className='difficulty-btn hard-btn' onClick={()=> setDifficulty("hard")}>HARD</button>
         </div>
       </div>
       }
