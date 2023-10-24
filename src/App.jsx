@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import {test} from "./components/test"
 import HeroCard from "./components/HeroCard"
 import VictoryScreen from './components/VictoryScreen';
+import DefeatScreen from './components/DefeatScreen';
 
 export default function App() {
 
@@ -12,7 +13,9 @@ export default function App() {
   const [bestScore, setBestScore] = useState(0);
   const [chosenCards, setChosenCard] = useState([]);
   const [gameStarted, setGameStarted] = useState(false);
+  const [showCards, setShowCards] = useState(false);
   const [gameWin, setGameWin] = useState(false);
+  const [gameDefeat, setGameDefeat] = useState(false);
 
   // useEffect(() => {
   //   const charactersNames = [
@@ -68,8 +71,9 @@ export default function App() {
         i -= 1
       }
     }
-    setRandomCharacters(randomCharacters)
-    setGameStarted(true)
+    setRandomCharacters(randomCharacters);
+    setGameStarted(true);
+    setShowCards(true);
   }
 
   useEffect(() => {
@@ -83,11 +87,17 @@ export default function App() {
       setChosenCard(prevChosenCard => [...prevChosenCard, cardId]
       )
       setScore(prevScore => prevScore + 1)
+      if(score === randomCharacters.length - 1) {
+        setGameWin(true);
+        setShowCards(false);
+      }
       
     } else {
-      setRandomCharacters([])
-      setChosenCard([])
-      setScore(0)
+      // setRandomCharacters([]);
+      setChosenCard([]);
+      setScore(0);
+      setGameDefeat(true);
+      setShowCards(false);
     }
     
   }
@@ -98,30 +108,78 @@ export default function App() {
     }
   },[score])
 
-  useEffect(() => {
-    if(score === randomCharacters.length && score > 0) {
-      setGameWin(true)
-    }
-  },[score])
+  function resetBtn() {
+    // setDifficulty("");
+    // setRandomCharacters([]);
+    setScore(0);
+    setShowCards(true);
+    setChosenCard([]);
+    setGameWin(false);
+    setGameDefeat(false);
+  }
+
+  function anotherRound() {
+    addRandomCharacters()
+    setScore(0);
+    setShowCards(true);
+    setChosenCard([]);
+    setGameWin(false);
+    setGameDefeat(false);
+  }
+
+  function mainMenuBtn() {
+    setDifficulty("");
+    setScore(0);
+    setRandomCharacters([]);
+    setChosenCard([]);
+    setGameStarted(false);
+    setShowCards(false);
+    setGameWin(false);
+    setGameDefeat(false);
+  }
+
+  // useEffect(() => {
+  //   if(score === randomCharacters.length && score > 0) {
+  //     setGameWin(true)
+  //   }
+  // },[score])
 
   return (
     <div>
-      { !gameStarted && <div>
-        <button className='difficulty-btn' onClick={()=> setDifficulty("easy")}>Easy</button>
-        <button className='difficulty-btn' onClick={()=> setDifficulty("medium")}>Medium</button>
-        <button className='difficulty-btn' onClick={()=> setDifficulty("hard")}>Hard</button>
-      </div>}
+      {!gameStarted && 
+      <div>
+        <div>
+          <h1>MARVEL HEROES</h1>
+          <h3>Memory Game</h3>
+        </div>
+        <div>
+          <button className='difficulty-btn' onClick={()=> setDifficulty("easy")}>Easy</button>
+          <button className='difficulty-btn' onClick={()=> setDifficulty("medium")}>Medium</button>
+          <button className='difficulty-btn' onClick={()=> setDifficulty("hard")}>Hard</button>
+        </div>
+      </div>
+      }
       {gameStarted && 
       <div>
-        <div>{bestScore}</div>
-        <div>{score}</div>
+        <div>
+          <button onClick={mainMenuBtn}>Main Menu</button>
+        </div>
+        <div>Best score : {bestScore}</div>
+        <div>Score : {score}</div>
       </div>}
-      {gameStarted &&
+      {showCards &&
       <HeroCard
         randomCharacters={randomCharacters}
         matchManagement={matchManagement}
       />}
-      {gameWin && <VictoryScreen />}
+      {gameWin && <VictoryScreen
+        anotherRound={anotherRound}
+        mainMenuBtn={mainMenuBtn}
+      />}
+      {gameDefeat && <DefeatScreen
+        resetBtn={resetBtn}
+        mainMenuBtn={mainMenuBtn}
+      />}
     </div>
   )
 }

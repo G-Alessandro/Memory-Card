@@ -1,17 +1,4 @@
 import { useState,useEffect } from "react";
-// export default function HeroCard(props) {
-
-//   return (
-//     <div className='container'>
-//       {props.randomCharacters.map(character => (
-//         <button className='hero-card' key={character.id} onClick={() => props.changeCardPosition(character.id)}>
-//           <img src={character.thumbnailPath} alt={character.name} />
-//           <h3>{character.name}</h3>
-//         </button>
-//       ))}
-//     </div>
-//   );
-// }
 
 export default function HeroCard(props) {
 
@@ -42,10 +29,7 @@ export default function HeroCard(props) {
     props.matchManagement(cardId)
     changeCardsOrder()
   }
-
-  // console.log("props.randomCharacters",props.randomCharacters)
-  // console.log("newCardsOrder",newCardsOrder)
-
+  
   return (
     <div className='container'>
       {newCardsOrder.map(character => (
