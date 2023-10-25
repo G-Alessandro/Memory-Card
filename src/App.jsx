@@ -144,11 +144,11 @@ export default function App() {
   }
 
   return (
-    <div className='container'>
+    <div>
       {!gameStarted && 
       <div className='main-menu'>
         <img src={MarvelLogo} alt="Marvel Logo" className='marvel-logo'/>
-        <h2>MEMORY GAME</h2>
+        <h2 className='marvel-game-description'>MEMORY GAME</h2>
         <div className='difficulty-btn-rules-container'>
           <p className='rules'>Choose the difficulty level and don't choose the same hero/heroine more than once!</p>
           <div className='difficulty-btn-container'>
