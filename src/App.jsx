@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import {test} from "./components/test"
-import HeroCard from "./components/HeroCard"
+import HeroCards from "./components/HeroCards"
 import VictoryScreen from './components/VictoryScreen';
 import DefeatScreen from './components/DefeatScreen';
 import MarvelLogo from './logo/marvel.svg'
@@ -168,7 +168,7 @@ export default function App() {
         </div>
       </div>}
       {showCards &&
-      <HeroCard
+      <HeroCards
         randomCharacters={randomCharacters}
         matchManagement={matchManagement}
       />}

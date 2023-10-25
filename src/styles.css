@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'Marvel';
-  src: url(./fonts/marvel/Marvel-Regular.ttf);
+  font-family: 'Komika';
+  src: url(./fonts/komika_axis/KOMIKAX_.ttf);
 }
 
 * {
@@ -57,6 +57,7 @@ body {
 }
 
 .rules {
+  font-family: 'Komika';
   font-size: 20px;
   font-weight: 700;
   text-align: center;
@@ -66,15 +67,14 @@ body {
 }
 
 .difficulty-btn {
-  font-family: 'Marvel';
+  font-family: 'Komika';
   background-color: white;
-  font-size: 40px;
+  font-size: 30px;
   text-align: center;
   font-weight: 900;
-  padding: 10px 20px 0px;
+  padding: 10px 20px;
   border: 4px solid black;
   border-radius: 10px;
-  letter-spacing: 4px;
   transition: transform 0.2s;
 }
 
@@ -89,6 +89,7 @@ body {
 }
 
 .main-menu-btn {
+  font-family: 'Komika';
   font-size: 20px;
   font-weight: 700;
   text-align: center;
@@ -103,6 +104,7 @@ body {
 }
 
 .score-container {
+  font-family: 'Komika';
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -113,14 +115,6 @@ body {
   font-weight: 700;
   padding: 5px;
 }
-
-/* .best-score {
-  font-size: 25px;
-}
-
-.score {
-  font-size: 25px;
-} */
 
 .cards-container {
   display: grid;
@@ -143,6 +137,7 @@ body {
 }
 
 .hero-name {
+  font-family: 'Komika';
   text-transform: uppercase;
   width: 180px;
   font-size: 18px;
@@ -157,4 +152,70 @@ button {
   cursor: pointer;
   outline: none;
   border-style: none;
+}
+
+.end-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  width: 800px;
+  height: 400px;
+  margin-top: 40px;
+}
+
+.victory-screen,
+.defeat-screen {
+  background-image: url("./images/deadpool-unicorn.jpg");
+  background-color: #fdf9ed;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border: 6px solid #fff9a1;
+  border-radius: 10px;
+  box-shadow: 0 0 50px #fdf9ed;
+}
+
+.defeat-screen {
+  background-image: url("./images/deadpool-toilet-paper-shooting.jpg");
+  background-color: #ea1744;
+  border: 6px solid black;
+  box-shadow: 0 0 50px black;
+}
+
+.victory-screen>h1,
+.defeat-screen>h1 {
+  font-family: 'Komika';
+  font-size: 40px;
+  color: #fef79c;
+  margin-bottom: 40px;
+  -webkit-text-stroke: 2px black;
+  letter-spacing: 4px;
+}
+
+.defeat-screen>h1 {
+  color: #ea1744;
+}
+
+.end-screen-btn-container {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 40px;
+}
+
+.another-round-btn,
+.try-again-btn {
+  font-family: 'Komika';
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  background-color: #fef79c;
+  border: 4px solid black;
+  padding: 10px;
+  transition: transform 0.2s;
+}
+
+.another-round-btn:hover,
+.try-again-btn:hover {
+  transform: scale(1.1);
 }

@@ -1,9 +1,11 @@
 export default function VictoryScreen(props) {
   return (
-    <div>
-      <div>YOU WIN!</div>
-      <button onClick={props.anotherRound}>Another Round</button>
-      <button onClick={props.mainMenuBtn}>Go To Main Menu</button>
+    <div className="end-screen victory-screen">
+      <h1>YOU WIN!</h1>
+      <div className="end-screen-btn-container">
+        <button onClick={props.mainMenuBtn} className='main-menu-btn'>Go To Main Menu</button>
+        <button onClick={props.anotherRound} className="another-round-btn">Another Round</button>
+      </div>
     </div>
   )
 }

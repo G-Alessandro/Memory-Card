@@ -1,9 +1,11 @@
 export default function DefeatScreen(props) {
   return (
-    <div>
-      <div>YOU LOST!</div>
-      <button onClick={props.resetBtn}>Try Again</button>
-      <button onClick={props.mainMenuBtn}>Go To Main Menu</button>
+    <div className="end-screen defeat-screen">
+      <h1>YOU LOST!</h1>
+      <div className="end-screen-btn-container">
+        <button onClick={props.mainMenuBtn} className='main-menu-btn'>Go To Main Menu</button>
+        <button onClick={props.resetBtn} className="try-again-btn">Try Again</button>
+      </div>
     </div>
   )
 }
