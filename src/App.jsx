@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import {test} from "./components/test"
+// import {dataCards} from "./components/data-cards"
 import HeroCards from "./components/HeroCards"
 import VictoryScreen from './components/VictoryScreen';
 import DefeatScreen from './components/DefeatScreen';
@@ -7,8 +7,8 @@ import MarvelLogo from './logo/marvel.svg'
 
 export default function App() {
 
-  const [characters, setCharacters] = useState(test);
-  const [difficulty, setDifficulty] = useState("");
+  const [characters, setCharacters] = useState('');
+  const [difficulty, setDifficulty] = useState('');
   const [randomCharacters, setRandomCharacters] = useState([]);
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
@@ -19,40 +19,40 @@ export default function App() {
   const [gameWin, setGameWin] = useState(false);
   const [gameDefeat, setGameDefeat] = useState(false);
 
-  // useEffect(() => {
-  //   const charactersNames = [
-  //     "Thor", "Thor%20(Goddess%20of%20Thunder)", "Spider-Man%20(Peter%20Parker)", "Spider-Girl%20(Anya%20Corazon)", "Spider-Gwen%20(Gwen%20Stacy)", "Spider-Man%20(Miles%20Morales)", "Spider-Woman%20(Jessica%20Drew)",
-  //     "Iron%20Man", "War%20Machine%20(Marvel:%20Avengers%20Alliance)", "Hulk", "She-Hulk%20(Ultimate)","Captain%20America","Doctor%20Strange", "Black%20Widow", "Black%20Panther", "Professor%20X%20(Ultimate)",
-  //     "Hawkeye", "Hawkeye%20(Kate%20Bishop)"
-  //   ];
+  useEffect(() => {
+    const charactersNames = [
+      "Thor", "Thor%20(Goddess%20of%20Thunder)", "Spider-Man%20(Peter%20Parker)", "Spider-Girl%20(Anya%20Corazon)", "Spider-Gwen%20(Gwen%20Stacy)", "Spider-Man%20(Miles%20Morales)", "Spider-Woman%20(Jessica%20Drew)",
+      "Iron%20Man", "War%20Machine%20(Marvel:%20Avengers%20Alliance)", "Hulk", "She-Hulk%20(Ultimate)","Captain%20America","Doctor%20Strange", "Black%20Widow", "Black%20Panther", "Professor%20X%20(Ultimate)",
+      "Hawkeye", "Hawkeye%20(Kate%20Bishop)"
+    ];
 
-  //   const heroPromises = charactersNames.map(characterName => {
-  //     return fetch(`https://gateway.marvel.com/v1/public/characters?name=${characterName}&limit=100&apikey=4ea64ac81653a51da4e6ec143ba73db2`)
-  //       .then(response => response.json())
-  //       .then(data => {
-  //         if (data.data.results && data.data.results.length > 0) {
-  //           const character = data.data.results[0];
-  //           return {
-  //             id: character.id,
-  //             name: character.name,
-  //             thumbnailPath: `${character.thumbnail.path}.${character.thumbnail.extension}`
-  //           };
-  //         }
-  //         return null;
-  //       })
-  //       .catch(error => {
-  //         console.error(`An error occurred while requesting for ${characterName}:`, error);
-  //         return [];
-  //       });
-  //   });
+    const heroPromises = charactersNames.map(characterName => {
+      return fetch(`https://gateway.marvel.com/v1/public/characters?name=${characterName}&limit=100&apikey=4ea64ac81653a51da4e6ec143ba73db2`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.data.results && data.data.results.length > 0) {
+            const character = data.data.results[0];
+            return {
+              id: character.id,
+              name: character.name,
+              thumbnailPath: `${character.thumbnail.path}.${character.thumbnail.extension}`
+            };
+          }
+          return null;
+        })
+        .catch(error => {
+          console.error(`An error occurred while requesting for ${characterName}:`, error);
+          return [];
+        });
+    });
 
-  //   Promise.all(heroPromises)
-  //     .then(charactersData => {
-  //       const filteredCharacters = charactersData.filter(character => character !== null);
-  //       setCharacters(filteredCharacters);
-  //     });
+    Promise.all(heroPromises)
+      .then(charactersData => {
+        const filteredCharacters = charactersData.filter(character => character !== null);
+        setCharacters(filteredCharacters);
+      });
 
-  // }, []);
+  }, []);
 
   function addRandomCharacters() {
 
